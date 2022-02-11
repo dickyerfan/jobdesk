@@ -19,7 +19,7 @@ class C_daftar_kerja extends CI_Controller
         // $this->load->view('templates/header', $data);
         // $this->load->view('templates/sidebar', $data);
         // $this->load->view('templates/topbar', $data);
-        $this->load->view('v_daftar_kerja/tampil2', $data);
+        $this->load->view('v_daftar_kerja/kerja_tunggu', $data);
         // $this->load->view('templates/footer');
     }
 
