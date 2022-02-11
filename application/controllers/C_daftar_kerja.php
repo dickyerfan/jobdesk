@@ -12,7 +12,7 @@ class C_daftar_kerja extends CI_Controller
 
     public function index()
     {
-        $data['title'] = 'Dashboard';
+        $data['title'] = 'Daftar Pekerjaan';
         $data['pekerjaan'] = $this->daftar_kerja->getAll();
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
 
