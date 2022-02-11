@@ -12,13 +12,14 @@ class C_selesai extends CI_Controller
 
     public function index()
     {
+        $data['title'] = 'Pekerjaan Selesai';
         $data['selesai'] = $this->daftar_kerja->kerjaSelesai();
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
 
         // $this->load->view('templates/header', $data);
         // $this->load->view('templates/sidebar', $data);
         // $this->load->view('templates/topbar', $data);
-        $this->load->view('v_daftar_kerja/tampil3', $data);
+        $this->load->view('v_daftar_kerja/kerja_selesai', $data);
         // $this->load->view('templates/footer');
     }
 }
