@@ -33,4 +33,11 @@ class m_daftar_kerja extends CI_Model
         $table = $this->session->userdata('username');
         return $this->db->get_where($table, array('status_task2' => 'Selesai'))->result();
     }
+
+    public function hapusData($id_task)
+    {
+        $table = $this->session->userdata('username');
+        $this->db->where('id_task', $id_task);
+        $this->db->delete($table);
+    }
 }

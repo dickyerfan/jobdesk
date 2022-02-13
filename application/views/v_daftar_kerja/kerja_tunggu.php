@@ -20,7 +20,40 @@
 
     <!-- Custom styles for this page -->
     <link href="<?= base_url() ?>/assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <script>
+        window.setTimeout("waktu()", 1000);
 
+        function waktu() {
+            let waktu = new Date();
+            setTimeout("waktu()", 1000);
+            let t = waktu.getDate();
+            let b = waktu.getMonth(); // jika menggunakan array
+            // let b = waktu.getMonth() + 1;  // jika menggunakan switch
+            let y = waktu.getFullYear();
+            let h = waktu.getHours();
+            let m = waktu.getMinutes();
+            let s = waktu.getSeconds();
+
+            t = checkTime(t);
+            h = checkTime(h);
+            m = checkTime(m);
+            s = checkTime(s);
+
+            let b_arr = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober",
+                "Nofember", "Desember"
+            ];
+            b = b_arr[b];
+
+            document.getElementById("jam").innerHTML = t + "  " + b + "  " + y + " | " + h + " : " + m + " : " + s + " WIB";
+        }
+
+        function checkTime(i) {
+            if (i < 10) {
+                i = "0" + i
+            }; // add zero in front of numbers < 10
+            return i;
+        }
+    </script>
 </head>
 
 <body id="page-top">
@@ -60,19 +93,19 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fas fa-fw fa-wrench"></i> List Kerja
+                <a class="nav-link" href="#"><i class="fas fa-list-alt"></i> List Kerja
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fas fa-fw fa-wrench"></i> Download file
+                <a class="nav-link" href="#"><i class="fas fa-download"></i> Download file
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('c_daftar_kerja/tambah'); ?>"><i class="fas fa-fw fa-wrench"></i> Tambah Pekerjaan
+                <a class="nav-link" href="<?= base_url('c_daftar_kerja/tambah'); ?>"><i class="fas fa-user-plus"></i> Tambah Pekerjaan
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('c_selesai'); ?>"><i class="fas fa-fw fa-wrench"></i> Pekerjaan Selesai
+                <a class="nav-link" href="<?= base_url('c_selesai'); ?>"><i class="fas fa-check-square"></i> Pekerjaan Selesai
                 </a>
             </li>
             <!-- Divider -->
@@ -125,6 +158,8 @@
                     <div class="d-none d-sm-inline-block form-inline mr-auto">
                         <h6 class="mt-2 text-dark">Jabatan : <?= $user['jabatan'] . " - " . $user['sub_bagian']; ?></h6>
                     </div>
+                    <div class="topbar-divider d-none d-sm-block"></div>
+                    <h6 class="mt-2 text-dark" id="jam"></h6>
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -140,7 +175,7 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    <i class="fas fa-key fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Ganti Password
                                 </a>
                                 <a class="dropdown-item" href="#">
@@ -171,9 +206,9 @@
                                 </div> -->
                                 <div class="card-body">
                                     <div class="table-responsive">
-                                        <table class="table table-bordered table-hover" data-page-length='30' id="dataTable" width="100%" cellspacing="0">
+                                        <table class="table table-bordered table-hover" data-page-length='10' id="dataTable" width="100%" cellspacing="0">
                                             <thead>
-                                                <tr class="text-center bg-primary text-light">
+                                                <tr class="text-center bg-danger text-light">
                                                     <th style="width: 10%;">NO</th>
                                                     <th class="text-uppercase">Jenis Pekerjaan</th>
                                                     <th class="text-uppercase" style="width: 20%;">Action</th>
@@ -193,7 +228,7 @@
                                                     <tr>
                                                         <td class="text-center"><?php echo $no++; ?></td>
                                                         <td><?php echo $row->name_task ?></td>
-                                                        <td><a href=""> <span class="proses badge badge-primary">Proses</span></a> <span class="badge badge-danger">Hapus</span></td>
+                                                        <td><a href=""> <span class="proses badge badge-primary">Proses</span></a> <a href="<?= base_url('c_daftar_kerja/hapus/'); ?><?= $row->id_task ?>"><span class="badge badge-danger" onclick="return confirm('Yakin Mau Menghapus?');">Hapus</span></a></td>
                                                     </tr>
                                                 <?php endforeach; ?>
                                             </tbody>

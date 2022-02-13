@@ -11,6 +11,10 @@ class Auth extends CI_Controller
 
     public function index()
     {
+        if ($this->session->userdata('username')) {
+            redirect('c_daftar_kerja');
+        }
+
         $this->form_validation->set_rules('username', 'Nama Panggilan', 'required', [
             'required' => 'Harus di isi, Tidak boleh kosong'
         ]);
@@ -83,9 +87,9 @@ class Auth extends CI_Controller
 
     public function registration()
     {
-        // if ($this->session->userdata('username')) {
-        //     redirect('user');
-        // }
+        if ($this->session->userdata('username')) {
+            redirect('c_daftar_kerja');
+        }
 
         $this->form_validation->set_rules('nama_depan', 'Nama Depan', 'required|trim', [
             'required' => 'Harus di isi, Tidak Boleh Kosong'

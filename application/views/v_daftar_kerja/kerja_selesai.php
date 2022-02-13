@@ -20,7 +20,40 @@
 
     <!-- Custom styles for this page -->
     <link href="<?= base_url() ?>/assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <script>
+        window.setTimeout("waktu()", 1000);
 
+        function waktu() {
+            let waktu = new Date();
+            setTimeout("waktu()", 1000);
+            let t = waktu.getDate();
+            let b = waktu.getMonth(); // jika menggunakan array
+            // let b = waktu.getMonth() + 1;  // jika menggunakan switch
+            let y = waktu.getFullYear();
+            let h = waktu.getHours();
+            let m = waktu.getMinutes();
+            let s = waktu.getSeconds();
+
+            t = checkTime(t);
+            h = checkTime(h);
+            m = checkTime(m);
+            s = checkTime(s);
+
+            let b_arr = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober",
+                "Nofember", "Desember"
+            ];
+            b = b_arr[b];
+
+            document.getElementById("jam").innerHTML = t + "  " + b + "  " + y + " | " + h + " : " + m + " : " + s + " WIB";
+        }
+
+        function checkTime(i) {
+            if (i < 10) {
+                i = "0" + i
+            }; // add zero in front of numbers < 10
+            return i;
+        }
+    </script>
 </head>
 
 <body id="page-top">
@@ -46,7 +79,7 @@
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
                 <a class="nav-link" href="#">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <i class="fas fa-check-square"></i>
                     <span class="text-uppercase"><?= $title; ?></span></a>
             </li>
 
@@ -60,15 +93,15 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('c_daftar_kerja'); ?>"><i class="fas fa-fw fa-wrench"></i> Daftar Tunggu
+                <a class="nav-link" href="<?= base_url('c_daftar_kerja'); ?>"><i class="fas fa-list-alt"></i> Daftar Tunggu
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('c_daftar_kerja/tambah'); ?>"><i class="fas fa-fw fa-wrench"></i> Tambah Pekerjaan
+                <a class="nav-link" href="<?= base_url('c_daftar_kerja/tambah'); ?>"><i class="fas fa-user-plus"></i> Tambah Pekerjaan
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fas fa-fw fa-wrench"></i> View Pekerjaan
+                <a class="nav-link" href="#"><i class="fas fa-print"></i> View Pekerjaan
                 </a>
             </li>
             <!-- Divider -->
@@ -121,6 +154,8 @@
                     <div class="d-none d-sm-inline-block form-inline mr-auto">
                         <h6 class="mt-2 text-dark">Jabatan : <?= $user['jabatan'] . " - " . $user['sub_bagian']; ?></h6>
                     </div>
+                    <div class="topbar-divider d-none d-sm-block"></div>
+                    <h6 class="mt-2 text-dark" id="jam"></h6>
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -136,7 +171,7 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    <i class="fas fa-key fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Ganti Password
                                 </a>
                                 <a class="dropdown-item" href="#">
