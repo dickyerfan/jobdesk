@@ -1,3 +1,54 @@
+<?php
+$table = $_SESSION['username'];
+$nama = $_SESSION['username'];
+
+$tgl = date('d');
+$bln = date('m');
+$thn = date('Y');
+
+switch ($bln) {
+    case '1':
+        $bln = "Januari";
+        break;
+    case '2':
+        $bln = "Februari";
+        break;
+    case '3':
+        $bln = "Maret";
+        break;
+    case '4':
+        $bln = "April";
+        break;
+    case '5':
+        $bln = "Mei";
+        break;
+    case '6':
+        $bln = "Juni";
+        break;
+    case '7':
+        $bln = "Juli";
+        break;
+    case '8':
+        $bln = "Agustus";
+        break;
+    case '9':
+        $bln = "September";
+        break;
+    case '10':
+        $bln = "Oktober";
+        break;
+    case '11':
+        $bln = "Nofember";
+        break;
+    case '12':
+        $bln = "Desember";
+        break;
+}
+
+$nik_baru = $_SESSION['nik'];
+$nik_pecah = str_split($nik_baru);
+$nik_baru = $nik_pecah[0] . $nik_pecah[1] . $nik_pecah[2] . ' ' . $nik_pecah[3] . $nik_pecah[4] . ' ' . $nik_pecah[5] . $nik_pecah[6] . $nik_pecah[7];
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -54,6 +105,34 @@
             return i;
         }
     </script>
+    <style>
+        .font {
+            font-size: 0.8rem;
+        }
+
+        .logo {
+            display: none;
+        }
+
+        @media print {
+
+            .navigasi {
+                display: none;
+            }
+
+            #accordionSidebar {
+                display: none;
+            }
+
+            #tanya {
+                display: none;
+            }
+
+            .logo {
+                display: block;
+            }
+        }
+    </style>
 </head>
 
 <body id="page-top" onload="waktu()">
@@ -62,7 +141,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navigasi navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
@@ -79,7 +158,7 @@
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
                 <a class="nav-link" href="#">
-                    <i class="fas fa-fw fa-check-square"></i>
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span class="text-uppercase font-weight-bold"><?= $title; ?></span></a>
             </li>
 
@@ -93,15 +172,15 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('c_daftar_kerja'); ?>"><i class="fas fa-fw fa-list-alt"></i> Daftar Tunggu
+                <a class="nav-link" href="" id="cetak"><i class="fas fa-fw fa-user-plus"></i> Cetak File
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('c_daftar_kerja/tambah'); ?>"><i class="fas fa-fw fa-user-plus"></i> Tambah Pekerjaan
+                <a class="nav-link" href="" id="belum"><i class="fas fa-fw fa-list-alt"></i> Pilih Bulan & Tahun
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('c_cetak') ?>"><i class="fas fa-fw fa-print"></i> View Pekerjaan
+                <a class="nav-link" href="<?= base_url('c_selesai'); ?>"><i class="fas fa-fw fa-check-square"></i> Kembali
                 </a>
             </li>
             <!-- Divider -->
@@ -137,7 +216,7 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                <nav class="navigasi navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
                     <!-- Sidebar Toggle (Topbar) -->
                     <form class="form-inline">
@@ -170,15 +249,11 @@
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="<?= base_url('c_password'); ?>">
+                                <a class="dropdown-item" href="#">
                                     <i class="fas fa-key fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Ganti Password
                                 </a>
                                 <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Update
-                                </a>
-                                <a class="dropdown-item" href="<?= base_url('c_profil') ?>">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profil
                                 </a>
@@ -196,66 +271,87 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md">
-                            <!-- DataTales Example -->
-                            <div class="card shadow mb-4">
-                                <!-- <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary text-center"><?php echo $title ?></h6>
-                                </div> -->
+                <div class="container-fluid" id="tanya">
+                    <div class="row justify-content-center">
+                        <div class="col-sm-4">
+                            <div class="card bg-dark shadow-lg border-0 text-center text-light">
                                 <div class="card-body">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered table-hover" data-page-length='10' id="dataTable" width="100%" cellspacing="0">
-                                            <thead>
-                                                <tr class="text-center bg-primary text-light">
-                                                    <th style="width: 10%;">NO</th>
-                                                    <th class="text-uppercase">Jenis Pekerjaan</th>
-                                                    <th class="text-uppercase" style="width: 20%;">Action</th>
-                                                </tr>
-                                            </thead>
-                                            <!-- <tfoot>
-                                                <tr class="text-center">
-                                                    <th>No</th>
-                                                    <th>Pekerjaan</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                            </tfoot> -->
-                                            <tbody>
+                                    <h3>Pilih Bulan</h3>
+                                    <form action="<?= base_url('c_cetak'); ?>" method="POST">
+                                        <div class="form-group">
+                                            <select name="bulan" class="custom-select mb-1">
+                                                <option value="">Bulan</option>
+                                                <option value="01">Januari</option>
+                                                <option value="02">Februari</option>
+                                                <option value="03">Maret</option>
+                                                <option value="04">April</option>
+                                                <option value="05">Mei</option>
+                                                <option value="06">Juni</option>
+                                                <option value="07">Juli</option>
+                                                <option value="08">Agustus</option>
+                                                <option value="09">September</option>
+                                                <option value="10">Oktober</option>
+                                                <option value="11">Nofember</option>
+                                                <option value="12">Desember</option>
+                                            </select>
+                                            <select name="tahun" class="custom-select">
                                                 <?php
-                                                $no = 1;
-                                                foreach ($selesai as $row) : ?>
-                                                    <?php $date_task2 = strtotime($row->date_task2); ?>
-                                                    <tr class="text-dark">
-                                                        <td class="text-center"><?php echo $no++; ?></td>
-                                                        <td><?php echo $row->name_task ?></td>
-                                                        <td><span class="badge bg-success text-light">Selesai</span> <span class="badge bg-danger" style="color: white;"><?= date('d M Y', $date_task2); ?></span></td>
-                                                    </tr>
-                                                <?php endforeach; ?>
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                                $mulai = date('Y') - 1;
+                                                for ($i = $mulai; $i < $mulai + 100; $i++) {
+                                                    $sel = $i == date('Y') ? ' selected="selected"' : '';
+                                                    echo '<option value="' . $i . '"' . $sel . '>' . $i . '</option>';
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                        <div class="d-grid gap-2">
+                                            <button type="submit" name="add_post" id="tombol_pilih" class="btn btn-block btn-dark">Pilih</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-
+                    <br>
                 </div>
-                <!-- /.container-fluid -->
-
-            </div>
-            <!-- End of Main Content -->
-
-            <!-- Footer -->
-            <!-- <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Pdam Bondowoso 2022</span>
+                <div class="logo container-fluid">
+                    <div class="row">
+                        <div class="col-sm-6 font">
+                            <p class="mb-0">Perusahaan Daerah Air Minum</p>
+                            <p class="mb-0">Kabupaten Bondowoso</p>
+                        </div>
+                        <div class="col-sm-6"></div>
                     </div>
                 </div>
-            </footer> -->
-            <!-- End of Footer -->
+                <h4 class="logo text-center">DAFTAR PEKERJAAN <?php echo $_SESSION['sub_bagian'] ?><br>
+                </h4>
+                <!-- /.container-fluid -->
+            </div>
+            <div class="container-fluid" id="tabel">
+                <table class="table table-sm table-hover table-bordered border-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="text-center font" width=5%>No</th>
+                            <th scope="col" class="text-center font" width=60%>Nama Pekerjaan</th>
+                            <th scope="col" class="text-center font" width=10%>Status</th>
+                            <th scope="col" class="text-center font" width=25%>Tanggal Selesai</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $no = 1;
+                        foreach ($cetak as $row) : ?>
+                            <tr>
+                                <td><?= $no++ ?></td>
+                                <td>testing</td>
+                                <td>Selesai</td>
+                                <td>10 Januari 2022</td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+
 
         </div>
         <!-- End of Content Wrapper -->
@@ -305,15 +401,25 @@
     <script src="<?= base_url() ?>/assets/js/demo/datatables-demo.js"></script>
 
     <script>
-        const proses = document.querySelectorAll('.proses');
-        for (let i = 0; i < proses.length; i++) {
-            proses[i].addEventListener('mouseover', function() {
-                proses[i].innerHTML = "Pekerjaan Selesai";
-            });
-            proses[i].addEventListener('mouseleave', function() {
-                proses[i].innerHTML = "Proses";
-            });
-        }
+        const tanya = document.getElementById('tanya');
+        const tombol_belum = document.getElementById('belum');
+        const tombol_pilih = document.getElementById('tombol_pilih');
+        const tabel = document.getElementById('tabel');
+        const cetak = document.getElementById('cetak');
+
+        // tombol_belum.addEventListener('click', function() {
+        //     if (tanya.style.display == "none") {
+        //         tanya.style.display = "block";
+        //     }
+        // });
+        tombol_pilih.addEventListener('click', function() {
+            if (tanya.style.display == "block") {
+                tanya.style.display = "none";
+            }
+        });
+        cetak.addEventListener('click', function() {
+            window.print();
+        })
     </script>
 </body>
 

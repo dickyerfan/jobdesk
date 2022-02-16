@@ -79,7 +79,7 @@
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
                 <a class="nav-link" href="#">
-                    <i class="fas fa-fw fa-check-square"></i>
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span class="text-uppercase font-weight-bold"><?= $title; ?></span></a>
             </li>
 
@@ -93,15 +93,7 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('c_daftar_kerja'); ?>"><i class="fas fa-fw fa-list-alt"></i> Daftar Tunggu
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('c_daftar_kerja/tambah'); ?>"><i class="fas fa-fw fa-user-plus"></i> Tambah Pekerjaan
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('c_cetak') ?>"><i class="fas fa-fw fa-print"></i> View Pekerjaan
+                <a class="nav-link" href="<?= base_url('c_daftar_kerja') ?>"><i class="fas fa-fw fa-list-alt"></i> Kembali
                 </a>
             </li>
             <!-- Divider -->
@@ -198,48 +190,32 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md">
-                            <!-- DataTales Example -->
-                            <div class="card shadow mb-4">
-                                <!-- <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary text-center"><?php echo $title ?></h6>
-                                </div> -->
-                                <div class="card-body">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered table-hover" data-page-length='10' id="dataTable" width="100%" cellspacing="0">
-                                            <thead>
-                                                <tr class="text-center bg-primary text-light">
-                                                    <th style="width: 10%;">NO</th>
-                                                    <th class="text-uppercase">Jenis Pekerjaan</th>
-                                                    <th class="text-uppercase" style="width: 20%;">Action</th>
-                                                </tr>
-                                            </thead>
-                                            <!-- <tfoot>
-                                                <tr class="text-center">
-                                                    <th>No</th>
-                                                    <th>Pekerjaan</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                            </tfoot> -->
-                                            <tbody>
-                                                <?php
-                                                $no = 1;
-                                                foreach ($selesai as $row) : ?>
-                                                    <?php $date_task2 = strtotime($row->date_task2); ?>
-                                                    <tr class="text-dark">
-                                                        <td class="text-center"><?php echo $no++; ?></td>
-                                                        <td><?php echo $row->name_task ?></td>
-                                                        <td><span class="badge bg-success text-light">Selesai</span> <span class="badge bg-danger" style="color: white;"><?= date('d M Y', $date_task2); ?></span></td>
-                                                    </tr>
-                                                <?php endforeach; ?>
-                                            </tbody>
-                                        </table>
-                                    </div>
+                        <div class="col-lg-6">
+                            <?= $this->session->flashdata('message'); ?>
+                            <!-- <?= $this->session->unset_userdata('message'); ?> -->
+                            <form action="<?= base_url('c_password'); ?>" method="post">
+                                <div class="form-group">
+                                    <label for="current_password">Password Saat ini</label>
+                                    <input type="password" class="form-control" id="current_password" name="current_password">
+                                    <?= form_error('current_password', '<small class="text-danger">', '</small>'); ?>
                                 </div>
-                            </div>
+                                <div class="form-group">
+                                    <label for="new_password1">Password Baru</label>
+                                    <input type="password" class="form-control" id="new_password1" name="new_password1">
+                                    <?= form_error('new_password1', '<small class="text-danger">', '</small>'); ?>
+                                </div>
+                                <div class="form-group">
+                                    <label for="new_password2">Password Konfirmasi</label>
+                                    <input type="password" class="form-control" id="new_password2" name="new_password2">
+                                    <?= form_error('new_password2', '<small class="text-danger">', '</small>'); ?>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary">Change Password</button>
+                                </div>
+                            </form>
+
                         </div>
                     </div>
-
 
                 </div>
                 <!-- /.container-fluid -->

@@ -79,7 +79,7 @@
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
                 <a class="nav-link" href="#">
-                    <i class="fas fa-fw fa-check-square"></i>
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span class="text-uppercase font-weight-bold"><?= $title; ?></span></a>
             </li>
 
@@ -93,15 +93,11 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('c_daftar_kerja'); ?>"><i class="fas fa-fw fa-list-alt"></i> Daftar Tunggu
+                <a class="nav-link" href="<?= base_url('c_daftar_kerja') ?>"><i class="fas fa-fw fa-list-alt"></i> Kembali
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="<?= base_url('c_daftar_kerja/tambah'); ?>"><i class="fas fa-fw fa-user-plus"></i> Tambah Pekerjaan
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('c_cetak') ?>"><i class="fas fa-fw fa-print"></i> View Pekerjaan
                 </a>
             </li>
             <!-- Divider -->
@@ -208,7 +204,7 @@
                                     <div class="table-responsive">
                                         <table class="table table-bordered table-hover" data-page-length='10' id="dataTable" width="100%" cellspacing="0">
                                             <thead>
-                                                <tr class="text-center bg-primary text-light">
+                                                <tr class="text-center bg-success text-light">
                                                     <th style="width: 10%;">NO</th>
                                                     <th class="text-uppercase">Jenis Pekerjaan</th>
                                                     <th class="text-uppercase" style="width: 20%;">Action</th>
@@ -224,12 +220,11 @@
                                             <tbody>
                                                 <?php
                                                 $no = 1;
-                                                foreach ($selesai as $row) : ?>
-                                                    <?php $date_task2 = strtotime($row->date_task2); ?>
+                                                foreach ($pekerjaan as $row) : ?>
                                                     <tr class="text-dark">
                                                         <td class="text-center"><?php echo $no++; ?></td>
                                                         <td><?php echo $row->name_task ?></td>
-                                                        <td><span class="badge bg-success text-light">Selesai</span> <span class="badge bg-danger" style="color: white;"><?= date('d M Y', $date_task2); ?></span></td>
+                                                        <td class="text-center"> <a href="<?= base_url('c_list_kerja/hapus/'); ?><?= $row->id_list ?>"><span class="badge badge-danger" onclick="return confirm('Yakin Mau Menghapus?');">Hapus</span></a></td>
                                                     </tr>
                                                 <?php endforeach; ?>
                                             </tbody>

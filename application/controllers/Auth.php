@@ -160,10 +160,22 @@ class Auth extends CI_Controller
                 'tgl_lahir' => strtoupper(htmlspecialchars($this->input->post('tgl_lahir', true)))
             ];
 
+
             $this->db->insert('user', $data);
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
                 Selamat! Akun Anda sudah di buat. Silakan   Login
               </div>');
+
+            $table = $this->input->post('username');
+            $query  = "CREATE TABLE IF NOT EXISTS $table (id_task INT(10) AUTO_INCREMENT, ";
+            $query .= "name_task VARCHAR(255),";
+            $query .= "status_task1 VARCHAR(50), ";
+            $query .= "status_task2 VARCHAR(50), ";
+            $query .= "tahun VARCHAR(4), ";
+            $query .= "bulan VARCHAR(2), ";
+            $query .= "date_task1 DATETIME,";
+            $query .= "date_task2 DATETIME, PRIMARY KEY (id_task))";
+            $data = $this->db->query($query);
             redirect('auth');
         }
     }
@@ -187,5 +199,13 @@ class Auth extends CI_Controller
         Selamat, Logout Sukses
       </div>');
         redirect('auth');
+    }
+    public function update()
+    {
+        $data['title'] = 'Update Jabatan';
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $this->load->view('templates/auth_header', $data);
+        $this->load->view('v_daftar_kerja/update', $data);
+        $this->load->view('templates/auth_footer');
     }
 }

@@ -13,7 +13,7 @@ class C_daftar_kerja extends CI_Controller
     public function index()
     {
 
-        $data['title'] = 'Daftar Pekerjaan';
+        $data['title'] = 'Daftar Tunggu';
         $data['pekerjaan'] = $this->daftar_kerja->getAll();
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
 
@@ -55,6 +55,18 @@ class C_daftar_kerja extends CI_Controller
     public function hapus($id_task)
     {
         $this->daftar_kerja->hapusData($id_task);
+        redirect('c_daftar_kerja');
+    }
+
+    public function proses($id_task)
+    {
+        $this->daftar_kerja->prosesData($id_task);
+        redirect('c_selesai');
+    }
+
+    public function download()
+    {
+        $this->daftar_kerja->downloadData();
         redirect('c_daftar_kerja');
     }
 }

@@ -1,3 +1,51 @@
+<?php
+$nik_baru = $_SESSION['nik'];
+$nik_pecah = str_split($nik_baru);
+$nik_baru = $nik_pecah[0] . $nik_pecah[1] . $nik_pecah[2] . ' ' . $nik_pecah[3] . $nik_pecah[4] . ' ' . $nik_pecah[5] . $nik_pecah[6] . $nik_pecah[7];
+$tanggal_lahir = date('d', strtotime($_SESSION['tgl_lahir']));
+$bulan_lahir = date('m', strtotime($_SESSION['tgl_lahir']));
+$tahun_lahir = date('Y', strtotime($_SESSION['tgl_lahir']));
+
+switch ($bulan_lahir) {
+    case '01':
+        $bulan_lahir = 'Januari';
+        break;
+    case '02':
+        $bulan_lahir = 'Februari';
+        break;
+    case '03':
+        $bulan_lahir = 'Maret';
+        break;
+    case '04':
+        $bulan_lahir = 'April';
+        break;
+    case '05':
+        $bulan_lahir = 'Mei';
+        break;
+    case '06':
+        $bulan_lahir = 'Juni';
+        break;
+    case '07':
+        $bulan_lahir = 'Juli';
+        break;
+    case '08':
+        $bulan_lahir = 'Agustus';
+        break;
+    case '09':
+        $bulan_lahir = 'September';
+        break;
+    case '10':
+        $bulan_lahir = 'Oktober';
+        break;
+    case '11':
+        $bulan_lahir = 'Nofember';
+        break;
+    case '12':
+        $bulan_lahir = 'Desember';
+        break;
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -79,7 +127,7 @@
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
                 <a class="nav-link" href="#">
-                    <i class="fas fa-fw fa-check-square"></i>
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span class="text-uppercase font-weight-bold"><?= $title; ?></span></a>
             </li>
 
@@ -93,15 +141,7 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('c_daftar_kerja'); ?>"><i class="fas fa-fw fa-list-alt"></i> Daftar Tunggu
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('c_daftar_kerja/tambah'); ?>"><i class="fas fa-fw fa-user-plus"></i> Tambah Pekerjaan
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('c_cetak') ?>"><i class="fas fa-fw fa-print"></i> View Pekerjaan
+                <a class="nav-link" href="<?= base_url('c_daftar_kerja') ?>"><i class="fas fa-fw fa-list-alt"></i> Kembali
                 </a>
             </li>
             <!-- Divider -->
@@ -174,10 +214,6 @@
                                     <i class="fas fa-key fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Ganti Password
                                 </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Update
-                                </a>
                                 <a class="dropdown-item" href="<?= base_url('c_profil') ?>">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profil
@@ -197,49 +233,82 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md">
-                            <!-- DataTales Example -->
-                            <div class="card shadow mb-4">
-                                <!-- <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary text-center"><?php echo $title ?></h6>
-                                </div> -->
+                    <div class="row justify-content-center">
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-6 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
                                 <div class="card-body">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered table-hover" data-page-length='10' id="dataTable" width="100%" cellspacing="0">
-                                            <thead>
-                                                <tr class="text-center bg-primary text-light">
-                                                    <th style="width: 10%;">NO</th>
-                                                    <th class="text-uppercase">Jenis Pekerjaan</th>
-                                                    <th class="text-uppercase" style="width: 20%;">Action</th>
-                                                </tr>
-                                            </thead>
-                                            <!-- <tfoot>
-                                                <tr class="text-center">
-                                                    <th>No</th>
-                                                    <th>Pekerjaan</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                            </tfoot> -->
-                                            <tbody>
-                                                <?php
-                                                $no = 1;
-                                                foreach ($selesai as $row) : ?>
-                                                    <?php $date_task2 = strtotime($row->date_task2); ?>
-                                                    <tr class="text-dark">
-                                                        <td class="text-center"><?php echo $no++; ?></td>
-                                                        <td><?php echo $row->name_task ?></td>
-                                                        <td><span class="badge bg-success text-light">Selesai</span> <span class="badge bg-danger" style="color: white;"><?= date('d M Y', $date_task2); ?></span></td>
-                                                    </tr>
-                                                <?php endforeach; ?>
-                                            </tbody>
-                                        </table>
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-lg font-weight-bold text-primary text-uppercase mb-1">
+                                                <?= $user['nama_depan'] . " " . $user['nama_belakang']; ?>
+                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                BAGIAN - <?= $user['bagian']; ?>
+                                            </div>
+                                            <div class="h6 mb-0 font-weight-bold text-gray-800">
+                                                JABATAN - <?= $user['jabatan'] . " " . $user['sub_bagian']; ?>
+                                            </div>
+                                            <div class="h6 mb-0 font-weight-bold text-gray-800">
+                                                NIK : <?= $nik_baru; ?>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <!-- <i class="fas fa-calendar fa-2x text-gray-300"></i> -->
+                                            <img src="<?= base_url('assets/img/pdam_biru.png') ?>" alt="" style="width: 7rem;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-md-6 mb-4">
+                            <div class="card border-left-danger shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-lg font-weight-bold text-primary text-uppercase mb-1">
+                                                <?= $user['tempat_lahir']; ?>
+                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                <?= ucwords($tanggal_lahir . ' ' . $bulan_lahir . ' ' . $tahun_lahir); ?>
+                                            </div>
+                                            <div class="h6 mb-0 font-weight-bold text-gray-800">
+                                                <?= $user['jenkel']; ?>
+                                            </div>
+                                            <div class="h6 mb-0 font-weight-bold text-gray-800">
+                                                <?= $user['agama']; ?>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <img src="<?= base_url('assets/img/pdam_biru.png') ?>" alt="" style="width: 7rem;">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
+                    <!-- <div class="row justify-content-center">
+                        <div class="col-lg-6">
+
+
+                            <div class="card shadow mb-4">
+
+                                <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
+                                    <h6 class="m-0 font-weight-bold text-primary">Collapsable Card Example</h6>
+                                </a>
+
+                                <div class="collapse show" id="collapseCardExample">
+                                    <div class="card-body">
+                                        This is a collapsable card example using Bootstrap's built in collapse
+                                        functionality. <strong>Click on the card header</strong> to see the card body
+                                        collapse and expand!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div> -->
 
                 </div>
                 <!-- /.container-fluid -->

@@ -56,7 +56,7 @@
     </script>
 </head>
 
-<body id="page-top">
+<body id="page-top" onload="waktu()">
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -80,7 +80,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="#">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span class="text-uppercase"><?= $title; ?></span></a>
+                    <span class="text-uppercase font-weight-bold"><?= $title; ?></span></a>
             </li>
 
             <!-- Divider -->
@@ -93,21 +93,25 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fas fa-list-alt"></i> List Kerja
+                <a class="nav-link" href="<?= base_url('c_selesai'); ?>"><i class="fas fa-fw fa-check-square"></i> Pekerjaan Selesai
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fas fa-download"></i> Download file
+                <a class="nav-link" href="<?= base_url('c_list_kerja') ?>"><i class="fas fa-fw fa-list-alt"></i> Pekerjaan Rutin
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('c_daftar_kerja/tambah'); ?>"><i class="fas fa-user-plus"></i> Tambah Pekerjaan
-                </a>
+                <form action="" method="post">
+                    <input type="hidden" name="bulan" value="<?php echo date('m'); ?>" />
+                    <a class="nav-link" name="ambil_data" href="<?= base_url('c_daftar_kerja/download') ?>" type="submit"><i class="fas fa-fw fa-download"></i> Download file
+                    </a>
+                </form>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('c_selesai'); ?>"><i class="fas fa-check-square"></i> Pekerjaan Selesai
+                <a class="nav-link" href="<?= base_url('c_daftar_kerja/tambah'); ?>"><i class="fas fa-fw fa-user-plus"></i> Tambah Pekerjaan
                 </a>
             </li>
+
             <!-- Divider -->
             <hr class="sidebar-divider">
 
@@ -174,11 +178,15 @@
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="<?= base_url('c_password'); ?>">
                                     <i class="fas fa-key fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Ganti Password
                                 </a>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="<?= base_url('auth/update') ?>">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Update
+                                </a>
+                                <a class="dropdown-item" href="<?= base_url('c_profil') ?>">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profil
                                 </a>
@@ -225,16 +233,17 @@
                                                 <?php
                                                 $no = 1;
                                                 foreach ($pekerjaan as $row) : ?>
-                                                    <tr>
+                                                    <tr class="text-dark">
                                                         <td class="text-center"><?php echo $no++; ?></td>
                                                         <td><?php echo $row->name_task ?></td>
-                                                        <td><a href=""> <span class="proses badge badge-primary">Proses</span></a> <a href="<?= base_url('c_daftar_kerja/hapus/'); ?><?= $row->id_task ?>"><span class="badge badge-danger" onclick="return confirm('Yakin Mau Menghapus?');">Hapus</span></a></td>
+                                                        <td><a href="<?= base_url('c_daftar_kerja/proses/'); ?><?= $row->id_task ?>"> <span class="proses badge badge-primary">Proses</span></a> <a href="<?= base_url('c_daftar_kerja/hapus/'); ?><?= $row->id_task ?>"><span class="badge badge-danger" onclick="return confirm('Yakin Mau Menghapus?');">Hapus</span></a></td>
                                                     </tr>
                                                 <?php endforeach; ?>
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
