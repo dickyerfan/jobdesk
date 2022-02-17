@@ -64,7 +64,7 @@ class m_daftar_kerja extends CI_Model
 
     public function prosesData($id_task)
     {
-
+        date_default_timezone_set("Asia/Jakarta");
         $data = [
             'status_task1' => 'NULL',
             'status_task2' => 'Selesai',

@@ -174,7 +174,7 @@
                                     <i class="fas fa-key fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Ganti Password
                                 </a>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="<?= base_url('auth/update/'); ?>">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Update
                                 </a>
@@ -209,9 +209,9 @@
                                         <table class="table table-bordered table-hover" data-page-length='10' id="dataTable" width="100%" cellspacing="0">
                                             <thead>
                                                 <tr class="text-center bg-primary text-light">
-                                                    <th style="width: 10%;">NO</th>
+                                                    <th style="width: 5%;">NO</th>
                                                     <th class="text-uppercase">Jenis Pekerjaan</th>
-                                                    <th class="text-uppercase" style="width: 20%;">Action</th>
+                                                    <th class="text-uppercase" style="width: 25%;">Action</th>
                                                 </tr>
                                             </thead>
                                             <!-- <tfoot>
@@ -229,7 +229,7 @@
                                                     <tr class="text-dark">
                                                         <td class="text-center"><?php echo $no++; ?></td>
                                                         <td><?php echo $row->name_task ?></td>
-                                                        <td><span class="badge bg-success text-light">Selesai</span> <span class="badge bg-danger" style="color: white;"><?= date('d M Y', $date_task2); ?></span></td>
+                                                        <td class="text-center"><span class="badge bg-success text-light">Selesai</span> <span class="badge bg-danger" style="color: white;"><?= date('d M Y - h : i ', $date_task2); ?>WIB</span></td>
                                                     </tr>
                                                 <?php endforeach; ?>
                                             </tbody>

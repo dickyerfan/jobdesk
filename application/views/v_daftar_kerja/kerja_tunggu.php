@@ -182,7 +182,7 @@
                                     <i class="fas fa-key fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Ganti Password
                                 </a>
-                                <a class="dropdown-item" href="<?= base_url('auth/update') ?>">
+                                <a class="dropdown-item" href="<?= base_url('auth/update/'); ?>">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Update
                                 </a>
@@ -217,7 +217,7 @@
                                         <table class="table table-bordered table-hover" data-page-length='10' id="dataTable" width="100%" cellspacing="0">
                                             <thead>
                                                 <tr class="text-center bg-danger text-light">
-                                                    <th style="width: 10%;">NO</th>
+                                                    <th style="width: 5%;">NO</th>
                                                     <th class="text-uppercase">Jenis Pekerjaan</th>
                                                     <th class="text-uppercase" style="width: 20%;">Action</th>
                                                 </tr>
@@ -236,7 +236,7 @@
                                                     <tr class="text-dark">
                                                         <td class="text-center"><?php echo $no++; ?></td>
                                                         <td><?php echo $row->name_task ?></td>
-                                                        <td><a href="<?= base_url('c_daftar_kerja/proses/'); ?><?= $row->id_task ?>"> <span class="proses badge badge-primary">Proses</span></a> <a href="<?= base_url('c_daftar_kerja/hapus/'); ?><?= $row->id_task ?>"><span class="badge badge-danger" onclick="return confirm('Yakin Mau Menghapus?');">Hapus</span></a></td>
+                                                        <td class="text-center"><a href="<?= base_url('c_daftar_kerja/proses/'); ?><?= $row->id_task ?>"> <span class="proses badge badge-primary">Proses</span></a> <a href="<?= base_url('c_daftar_kerja/hapus/'); ?><?= $row->id_task ?>"><span class="badge badge-danger" onclick="return confirm('Yakin Mau Menghapus?');">Hapus</span></a></td>
                                                     </tr>
                                                 <?php endforeach; ?>
                                             </tbody>

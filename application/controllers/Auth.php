@@ -200,12 +200,24 @@ class Auth extends CI_Controller
       </div>');
         redirect('auth');
     }
+
     public function update()
     {
+        $this->load->model('m_auth', 'update');
         $data['title'] = 'Update Jabatan';
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
-        $this->load->view('templates/auth_header', $data);
-        $this->load->view('v_daftar_kerja/update', $data);
-        $this->load->view('templates/auth_footer');
+
+        $this->form_validation->set_rules('bagian', 'Bagian', 'required');
+        $this->form_validation->set_rules('sub_bagian', 'Sub Bagian', 'required');
+        $this->form_validation->set_rules('jabatan', 'jabatan', 'required');
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templates/auth_header', $data);
+            $this->load->view('v_daftar_kerja/update', $data);
+            $this->load->view('templates/auth_footer');
+        } else {
+            $this->update->updateData();
+            redirect('c_daftar_kerja');
+        }
     }
 }

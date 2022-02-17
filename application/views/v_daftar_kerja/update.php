@@ -14,24 +14,22 @@
                                 <h2 class="text-gray-900 mb-2 text-uppercase"><?= $title; ?></h2>
                             </div>
                         </div>
-                        <form method="post" action="<?= base_url('auth/update'); ?>" class="user">
-                            <div class=" form-group row">
-                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <input type="text" class="form-control form-control-user" id="nama_depan" name="nama_depan" placeholder="Nama Depan" value="<?= set_value('nama_depan'); ?>">
-                                    <!-- <?= form_error('nama_depan', '<small class="text-danger">', '</small>'); ?> -->
+                        <form method="post" action="" class="user">
+                            <input type="hidden" name="nama_depan" value="">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <input type="text" class="form-control" id="nama_depan" name="nama_depan" placeholder="Nama Depan" value="<?= $user['nama_depan']; ?>" readonly>
                                 </div>
-                                <div class="col-sm-6">
-                                    <input type="text" class="form-control form-control-user" id="nama_belakang" name="nama_belakang" placeholder="Nama Belakang" value="<?= set_value('nama_belakang'); ?>">
-                                    <!-- <?= form_error('nama_belakang', '<small class="text-danger">', '</small>'); ?> -->
+                                <div class="form-group col-md-6">
+                                    <input type="text" class="form-control" id="nama_belakang" name="nama_belakang" placeholder="Nama Belakang" value="<?= $user['nama_belakang']; ?>" readonly>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control form-control-user" id="username" name="username" placeholder="Nama Panggilan" value="<?= set_value('username'); ?>">
-                                <!-- <?= form_error('username', '<small class="text-danger">', '</small>'); ?> -->
+                                <input type="text" class="form-control" id="username" name="username" placeholder="Nama Panggilan" value="<?= $user['username']; ?>" readonly>
                             </div>
-                            <div class=" form-group row">
+                            <div class=" form-group">
                                 <select class="custom-select" name="bagian" id="bagian" required>
-                                    <option selected>Bagian / UPK</option>
+                                    <option value="">Bagian / UPK</option>
                                     <option value="Langganan">Langganan</option>
                                     <option value="U m u m">U m u m</option>
                                     <option value="Keuangan">Keuangan</option>
@@ -42,9 +40,9 @@
                                     <option value="A M D K">A M D K</option>
                                 </select>
                             </div>
-                            <div class=" form-group row">
+                            <div class=" form-group">
                                 <select class="custom-select" name="sub_bagian" id="sub_bagian" required>
-                                    <option selected>Sub Bagian / UPK</option>
+                                    <option value="">Sub Bagian / UPK</option>
                                     <option value="Langganan">Langganan</option>
                                     <option value="Penagihan">Penagihan</option>
                                     <option value="Umum">Umum</option>
@@ -77,9 +75,9 @@
                                     <option value="Sukosari 2">Sukosari 2</option>
                                 </select>
                             </div>
-                            <div class=" form-group row">
+                            <div class=" form-group">
                                 <select class="custom-select" name="jabatan" id="jabatan" required>
-                                    <option selected>Jabatan</option>
+                                    <option value="">Jabatan</option>
                                     <option value="Kabag">Kabag</option>
                                     <option value="Ketua">Ketua</option>
                                     <option value="Ka UPK">Ka UPK</option>

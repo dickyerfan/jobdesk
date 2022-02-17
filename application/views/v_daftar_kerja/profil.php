@@ -214,6 +214,10 @@ switch ($bulan_lahir) {
                                     <i class="fas fa-key fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Ganti Password
                                 </a>
+                                <a class="dropdown-item" href="<?= base_url('auth/update/'); ?>">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Update
+                                </a>
                                 <a class="dropdown-item" href="<?= base_url('c_profil') ?>">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profil
