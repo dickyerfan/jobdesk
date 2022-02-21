@@ -171,7 +171,7 @@
                                     Ganti Password
                                 </a>
                                 <a class="dropdown-item" href="<?= base_url('auth/update/'); ?>">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    <i class="fas fa-user-edit fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Update
                                 </a>
                                 <a class="dropdown-item" href="<?= base_url('c_profil') ?>">
@@ -224,7 +224,9 @@
                                                     <tr class="text-dark">
                                                         <td class="text-center"><?php echo $no++; ?></td>
                                                         <td><?php echo $row->name_task ?></td>
-                                                        <td class="text-center"> <a href="<?= base_url('c_list_kerja/hapus/'); ?><?= $row->id_list ?>"><span class="badge badge-danger" onclick="return confirm('Yakin Mau Menghapus?');">Hapus</span></a></td>
+                                                        <td class="text-center"> <a href="<?= base_url('c_list_kerja/hapus/'); ?><?= $row->id_list ?>"><span class="badge badge-danger" onclick="return confirm('Yakin Mau Menghapus?');">Hapus</span></a>
+                                                            <!-- <a href="<?= base_url('c_list_kerja/download/'); ?><?= $row->id_list ?>"><span class="badge badge-primary" onclick="return confirm('Yakin Mau download?');">download</span></a> -->
+                                                        </td>
                                                     </tr>
                                                 <?php endforeach; ?>
                                             </tbody>

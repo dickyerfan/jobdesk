@@ -25,4 +25,9 @@ class C_list_kerja extends CI_Controller
         $this->list_kerja->hapusData($id_list);
         redirect('c_list_kerja');
     }
+    // public function download($id_list)
+    // {
+    //     $this->list_kerja->downloadData($id_list);
+    //     redirect('c_daftar_kerja');
+    // }
 }

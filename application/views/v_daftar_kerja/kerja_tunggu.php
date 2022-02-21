@@ -101,10 +101,10 @@
                 </a>
             </li>
             <li class="nav-item">
-                <form action="" method="post">
+                <form action="<?= base_url('c_download'); ?>" method="post">
                     <input type="hidden" name="bulan" value="<?php echo date('m'); ?>" />
-                    <a class="nav-link" name="ambil_data" href="<?= base_url('c_daftar_kerja/download') ?>" type="submit"><i class="fas fa-fw fa-download"></i> Download file
-                    </a>
+                    <button class="btn nav-link" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Klik Untuk Download Daftar Pekerjaan" id="ambil_data" type="submit" name="ambil_data"><i class="fas fa-fw fa-download"></i>
+                        Download Data</button>
                 </form>
             </li>
             <li class="nav-item">
@@ -183,7 +183,7 @@
                                     Ganti Password
                                 </a>
                                 <a class="dropdown-item" href="<?= base_url('auth/update/'); ?>">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    <i class="fas fa-user-edit fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Update
                                 </a>
                                 <a class="dropdown-item" href="<?= base_url('c_profil') ?>">
@@ -205,6 +205,8 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
+                    <?= $this->session->flashdata('message'); ?>
+                    <?= $this->session->unset_userdata('message'); ?>
                     <div class="row">
                         <div class="col-md">
                             <!-- DataTales Example -->

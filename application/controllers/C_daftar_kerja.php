@@ -63,10 +63,4 @@ class C_daftar_kerja extends CI_Controller
         $this->daftar_kerja->prosesData($id_task);
         redirect('c_selesai');
     }
-
-    public function download()
-    {
-        $this->daftar_kerja->downloadData();
-        redirect('c_daftar_kerja');
-    }
 }
