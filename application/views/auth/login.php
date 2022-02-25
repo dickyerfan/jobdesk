@@ -11,11 +11,13 @@
                     <div class="row">
                         <div class="col-lg">
                             <div class="p-5">
+                                <h4 class="text-gray-900 mb-4 text-center">DAFTAR PEKERJAAN</h4>
                                 <div class="row">
                                     <div class="col-sm-5 text-right">
                                         <img src="<?= base_url('assets/img/pdam_biru.png') ?>" alt="" style="width: 3rem;">
                                     </div>
                                     <div class="col-sm-7">
+
                                         <h1 class="text-gray-900 mb-4">LOGIN</h1>
                                     </div>
 

@@ -42,7 +42,7 @@
                                 <div class="form-row">
                                     <div class="form-group col-sm-6 mb-3 mb-sm-0">
                                         <select class="custom-select" name="bagian" id="bagian" required>
-                                            <option selected>Bagian / UPK</option>
+                                            <option value="">Bagian / UPK</option>
                                             <option value="Langganan">Langganan</option>
                                             <option value="U m u m">U m u m</option>
                                             <option value="Keuangan">Keuangan</option>
@@ -55,7 +55,7 @@
                                     </div>
                                     <div class="form-group col-sm-6">
                                         <select class="custom-select" name="sub_bagian" id="sub_bagian" required>
-                                            <option selected>Sub Bagian / UPK</option>
+                                            <option value>Sub Bagian / UPK</option>
                                             <option value="Langganan">Langganan</option>
                                             <option value="Penagihan">Penagihan</option>
                                             <option value="Umum">Umum</option>
@@ -92,7 +92,7 @@
                                 <div class=" form-row">
                                     <div class="form-group col-sm-6 mb-3 mb-sm-0">
                                         <select class="custom-select" name="jabatan" id="jabatan" required>
-                                            <option selected>Jabatan</option>
+                                            <option value="">Jabatan</option>
                                             <option value="Kabag">Kabag</option>
                                             <option value="Ketua">Ketua</option>
                                             <option value="Ka UPK">Ka UPK</option>
@@ -105,7 +105,7 @@
                                     </div>
                                     <div class="form-group col-sm-6">
                                         <select class="custom-select" name="agama" id="agama" required>
-                                            <option selected>Agama</option>
+                                            <option value="">Agama</option>
                                             <option value="Islam">Islam</option>
                                             <option value="Kristen">Kristen</option>
                                             <option value="Katolik">Katolik</option>
@@ -128,7 +128,7 @@
                                 <div class=" form-row">
                                     <div class="form-group col-sm-6 mb-3 mb-sm-0">
                                         <select class="custom-select" name="jenkel" id="jenkel" required>
-                                            <option selected>Jenis Kelamin</option>
+                                            <option value="">Jenis Kelamin</option>
                                             <option value="Laki-laki">Laki-laki</option>
                                             <option value="Perempuan">Perempuan</option>
                                         </select>

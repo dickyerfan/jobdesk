@@ -115,8 +115,8 @@ $nik_baru = $nik_pecah[0] . $nik_pecah[1] . $nik_pecah[2] . ' ' . $nik_pecah[3] 
                         <h3>Pilih Bulan</h3>
                         <form action="<?= base_url('c_cetak') ?>" method="POST">
                             <div class="form-group">
-                                <select name="bulan" class="custom-select mb-1">
-                                    <option value="">Bulan</option>
+                                <select name="bulan" class="custom-select mb-1" required>
+                                    <option value="<?php echo $bulan = date('m'); ?>">Bulan</option>
                                     <option value="01">Januari</option>
                                     <option value="02">Februari</option>
                                     <option value="03">Maret</option>
@@ -133,7 +133,7 @@ $nik_baru = $nik_pecah[0] . $nik_pecah[1] . $nik_pecah[2] . ' ' . $nik_pecah[3] 
                                 <select name="tahun" class="custom-select">
                                     <?php
                                     $mulai = date('Y') - 1;
-                                    for ($i = $mulai; $i < $mulai + 100; $i++) {
+                                    for ($i = $mulai; $i < $mulai + 10; $i++) {
                                         $sel = $i == date('Y') ? ' selected="selected"' : '';
                                         echo '<option value="' . $i . '"' . $sel . '>' . $i . '</option>';
                                     }
