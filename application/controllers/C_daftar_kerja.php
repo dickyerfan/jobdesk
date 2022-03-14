@@ -8,6 +8,9 @@ class C_daftar_kerja extends CI_Controller
         parent::__construct();
         $this->load->model('m_daftar_kerja', 'daftar_kerja');
         $this->load->library('form_validation');
+        if (!$this->session->userdata('username')) {
+            redirect('auth');
+        }
     }
 
     public function index()
