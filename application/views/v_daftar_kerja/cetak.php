@@ -181,6 +181,8 @@ $nik_baru = $nik_pecah[0] . $nik_pecah[1] . $nik_pecah[2] . ' ' . $nik_pecah[3] 
                     $tanggal = date('d', $tgls);
                     $bulan = date('m', $tgls);
                     $tahun = date('Y', $tgls);
+                    $jam = date('H', $tgls);
+                    $menit = date('i', $tgls);
 
                     switch ($bulan) {
                         case '1':
@@ -225,7 +227,7 @@ $nik_baru = $nik_pecah[0] . $nik_pecah[1] . $nik_pecah[2] . ' ' . $nik_pecah[3] 
                         <td class="text-center"><?= $no++ ?></td>
                         <td><?= $row->name_task; ?></td>
                         <td class="text-center"><?= $row->status_task2; ?></td>
-                        <td class="text-center"><?= $tanggal . " " . $bulan . " " . $tahun; ?></td>
+                        <td class="text-center"><?= $tanggal . " " . $bulan . " " . $tahun . " - " . $jam . " : " . $menit; ?> WIB</td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
