@@ -229,7 +229,7 @@
                                                     <tr class="text-dark">
                                                         <td class="text-center"><?php echo $no++; ?></td>
                                                         <td><?php echo $row->name_task ?></td>
-                                                        <td class="text-center"><span class="badge bg-success text-light">Selesai</span> <span class="badge bg-danger" style="color: white;"><?= date('d M Y - h : i ', $date_task2); ?>WIB</span></td>
+                                                        <td class="text-center"><span class="badge bg-success text-light">Selesai</span> <span class="badge bg-danger" style="color: white;"><?= date('d M Y - H : i ', $date_task2); ?>WIB</span></td>
                                                     </tr>
                                                 <?php endforeach; ?>
                                             </tbody>
