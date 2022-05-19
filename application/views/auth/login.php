@@ -100,7 +100,7 @@
                                 </form>
                                 <br>
                                 <div class=" small text-center" style="color: blue;">
-                                    Belum punya akun..? <a href="<?= base_url() ?>/auth/registration" style="text-decoration: none;">Silakan Registrasi</a>
+                                    Belum punya akun..? <a href="<?= base_url() ?>auth/registration" style="text-decoration: none;">Silakan Registrasi</a>
                                 </div>
                             </div>
                         </div>

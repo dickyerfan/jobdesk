@@ -39,9 +39,9 @@ class Auth extends CI_Controller
         // $username = htmlspecialchars($this->input->post('username'));
         $username = $this->input->post('username');
         $password = $this->input->post('password');
-        // $bagian = $this->input->post('bagian');
-        // $sub_bagian = $this->input->post('sub_bagian');
-        // $jabatan = $this->input->post('jabatan');
+        $bagian = $this->input->post('bagian');
+        $sub_bagian = $this->input->post('sub_bagian');
+        $jabatan = $this->input->post('jabatan');
 
         $user = $this->db->get_where('user', [
             'username' => $username
@@ -70,9 +70,6 @@ class Auth extends CI_Controller
                     'tgl_lahir' => $user['tgl_lahir']
                 ];
                 $this->session->set_userdata($data);
-                $this->session->set_flashdata('message', '<div class="alert alert-primary text-center font-weight-bold" role="alert" style="width:25%;">
-                Selamat Bekerja...
-              </div>');
                 redirect('c_daftar_kerja');
             } else {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
@@ -93,7 +90,53 @@ class Auth extends CI_Controller
         if ($this->session->userdata('username')) {
             redirect('c_daftar_kerja');
         }
-        $this->_rules();
+
+        $this->form_validation->set_rules('nama_depan', 'Nama Depan', 'required|trim', [
+            'required' => 'Harus di isi, Tidak Boleh Kosong'
+        ]);
+        $this->form_validation->set_rules('nama_belakang', 'Nama Belakang', 'required|trim', [
+            'required' => 'Harus di isi, Tidak Boleh Kosong'
+        ]);
+        $this->form_validation->set_rules('username', 'Nama Panggilan', 'required|trim|is_unique[user.username]', [
+            'required' => 'Harus di isi, Tidak Boleh Kosong',
+            'is_unique' => 'nama panggilan sudah ada'
+        ]);
+        $this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[5]|matches[password2]', [
+            'required' => 'Harus di isi, Tidak Boleh Kosong',
+            'matches' => 'Password Tidak Sama',
+            'min_length' => 'Password Minimal 5 karakter!'
+        ]);
+        $this->form_validation->set_rules('password2', 'Password', 'required|trim|matches[password1]', [
+            'required' => 'Harus di isi, Tidak Boleh Kosong',
+            'matches' => 'Password Tidak Sama'
+        ]);
+        // $this->form_validation->set_rules('bagian', 'Bagian', 'required', [
+        //     'required' => 'Harus di isi, Tidak Boleh Kosong'
+        // ]);
+        // $this->form_validation->set_rules('sub_bagian', 'Sub Bagian', 'required', [
+        //     'required' => 'Harus di isi, Tidak Boleh Kosong'
+        // ]);
+        // $this->form_validation->set_rules('Jabatan', 'Jabatan', 'required', [
+        //     'required' => 'Harus di isi, Tidak Boleh Kosong'
+        // ]);
+        // $this->form_validation->set_rules('agama', 'Agama', 'required', [
+        //     'required' => 'Harus di isi, Tidak Boleh Kosong'
+        // ]);
+        // $this->form_validation->set_rules('no_hp', 'No HP', 'required|trim', [
+        //     'required' => 'Harus di isi, Tidak Boleh Kosong'
+        // ]);
+        // $this->form_validation->set_rules('nik', 'NIK', 'required|trim', [
+        //     'required' => 'Harus di isi, Tidak Boleh Kosong'
+        // ]);
+        // $this->form_validation->set_rules('jenkel', 'Jenis Kelamin', 'required', [
+        //     'required' => 'Harus di isi, Tidak Boleh Kosong'
+        // ]);
+        $this->form_validation->set_rules('tempat_lahir', 'Tempat Lahir', 'required|trim', [
+            'required' => 'Harus di isi, Tidak Boleh Kosong'
+        ]);
+        // $this->form_validation->set_rules('tgl_lahir', 'Tanggal Lahir', 'required', [
+        //     'required' => 'Harus di isi, Tidak Boleh Kosong'
+        // ]);
 
 
         if ($this->form_validation->run() == false) {
@@ -102,35 +145,22 @@ class Auth extends CI_Controller
             $this->load->view('auth/registration');
             $this->load->view('templates/auth_footer');
         } else {
-            $namaDepan = strtoupper(htmlspecialchars($this->input->post('nama_depan', true)));
-            $namaBelakang = strtoupper(htmlspecialchars($this->input->post('nama_belakang', true)));
-            $username = strtoupper(htmlspecialchars($this->input->post('username', true)));
-            $password = password_hash($this->input->post('password1'), PASSWORD_DEFAULT);
-            $bagian = strtoupper(htmlspecialchars($this->input->post('bagian', true)));
-            $sub_bagian = strtoupper(htmlspecialchars($this->input->post('sub_bagian', true)));
-            $jabatan = strtoupper(htmlspecialchars($this->input->post('jabatan', true)));
-            $agama = strtoupper(htmlspecialchars($this->input->post('agama', true)));
-            $no_hp = strtoupper(htmlspecialchars($this->input->post('no_hp', true)));
-            $nik = strtoupper(htmlspecialchars($this->input->post('nik', true)));
-            $jenkel = strtoupper(htmlspecialchars($this->input->post('jenkel', true)));
-            $tempatLahir = strtoupper(htmlspecialchars($this->input->post('tempat_lahir', true)));
-            $tglLahir = strtoupper(htmlspecialchars($this->input->post('tgl_lahir', true)));
+            $data = [
+                'nama_depan' => strtoupper(htmlspecialchars($this->input->post('nama_depan', true))),
+                'nama_belakang' => strtoupper(htmlspecialchars($this->input->post('nama_belakang', true))),
+                'username' => strtoupper(htmlspecialchars($this->input->post('username', true))),
+                'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
+                'bagian' => strtoupper(htmlspecialchars($this->input->post('bagian', true))),
+                'sub_bagian' => strtoupper(htmlspecialchars($this->input->post('sub_bagian', true))),
+                'jabatan' => strtoupper(htmlspecialchars($this->input->post('jabatan', true))),
+                'agama' => strtoupper(htmlspecialchars($this->input->post('agama', true))),
+                'no_hp' => strtoupper(htmlspecialchars($this->input->post('no_hp', true))),
+                'nik' => strtoupper(htmlspecialchars($this->input->post('nik', true))),
+                'jenkel' => strtoupper(htmlspecialchars($this->input->post('jenkel', true))),
+                'tempat_lahir' => strtoupper(htmlspecialchars($this->input->post('tempat_lahir', true))),
+                'tgl_lahir' => strtoupper(htmlspecialchars($this->input->post('tgl_lahir', true)))
+            ];
 
-            $data = array(
-                'nama_depan' => $namaDepan,
-                'nama_belakang' => $namaBelakang,
-                'username' => $username,
-                'password' => $password,
-                'bagian' => $bagian,
-                'sub_bagian' => $sub_bagian,
-                'jabatan' => $jabatan,
-                'agama' => $agama,
-                'no_hp' => $no_hp,
-                'nik' => $nik,
-                'jenkel' => $jenkel,
-                'tempat_lahir' => $tempatLahir,
-                'tgl_lahir' => $tglLahir
-            );
 
             $this->db->insert('user', $data);
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
@@ -153,10 +183,6 @@ class Auth extends CI_Controller
 
     public function logout()
     {
-        if ($this->session->userdata('username')) {
-            redirect('c_daftar_kerja');
-        }
-
         $this->session->unset_userdata('nama_depan');
         $this->session->unset_userdata('nama_belakang');
         $this->session->unset_userdata('username');
@@ -194,55 +220,5 @@ class Auth extends CI_Controller
             $this->update->updateData();
             redirect('c_daftar_kerja');
         }
-    }
-
-    public function _rules()
-    {
-        $this->form_validation->set_rules('nama_depan', 'Nama Depan', 'required|trim', [
-            'required' => '%s wajib di isi'
-        ]);
-        $this->form_validation->set_rules('nama_belakang', 'Nama Belakang', 'required|trim', [
-            'required' => '%s wajib di isi'
-        ]);
-        $this->form_validation->set_rules('username', 'Nama Panggilan', 'required|trim|is_unique[user.username]', [
-            'required' => '%s wajib di isi',
-            'is_unique' => '%s sudah terdaftar'
-        ]);
-        $this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[5]|matches[password2]', [
-            'required' => '%s wajib di isi',
-            'matches' => '%s Tidak Sama',
-            'min_length' => '%s Minimal 5 karakter!'
-        ]);
-        $this->form_validation->set_rules('password2', 'Password Konfirmasi', 'required|trim|matches[password1]', [
-            'required' => '%s wajib di isi',
-            'matches' => 'Password Tidak Sama'
-        ]);
-        $this->form_validation->set_rules('bagian', 'Bagian', 'required', [
-            'required' => '%s wajib di isi'
-        ]);
-        $this->form_validation->set_rules('sub_bagian', 'Sub Bagian', 'required', [
-            'required' => '%s wajib di isi'
-        ]);
-        $this->form_validation->set_rules('jabatan', 'Jabatan', 'required', [
-            'required' => '%s wajib di isi'
-        ]);
-        $this->form_validation->set_rules('agama', 'Agama', 'required', [
-            'required' => '%s wajib di isi'
-        ]);
-        $this->form_validation->set_rules('no_hp', 'No HP', 'required|trim', [
-            'required' => '%s wajib di isi'
-        ]);
-        $this->form_validation->set_rules('nik', 'NIK', 'required|trim', [
-            'required' => '%s wajib di isi'
-        ]);
-        $this->form_validation->set_rules('jenkel', 'Jenis Kelamin', 'required', [
-            'required' => '%s wajib di isi'
-        ]);
-        $this->form_validation->set_rules('tempat_lahir', 'Tempat Lahir', 'required|trim', [
-            'required' => '%s wajib di isi'
-        ]);
-        $this->form_validation->set_rules('tgl_lahir', 'Tanggal Lahir', 'required', [
-            'required' => '%s wajib di isi'
-        ]);
     }
 }

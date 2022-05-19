@@ -41,7 +41,7 @@
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-sm-6 mb-3 mb-sm-0">
-                                        <select class="custom-select" name="bagian" id="bagian" required>
+                                        <select class="custom-select" name="bagian" id="bagian">
                                             <option value="">Bagian / UPK</option>
                                             <option value="Langganan">Langganan</option>
                                             <option value="U m u m">U m u m</option>
@@ -52,9 +52,10 @@
                                             <option value="U P K">U P K</option>
                                             <option value="A M D K">A M D K</option>
                                         </select>
+                                        <?= form_error('bagian', '<small class="text-danger">', '</small>'); ?>
                                     </div>
                                     <div class="form-group col-sm-6">
-                                        <select class="custom-select" name="sub_bagian" id="sub_bagian" required>
+                                        <select class="custom-select" name="sub_bagian" id="sub_bagian">
                                             <option value>Sub Bagian / UPK</option>
                                             <option value="Langganan">Langganan</option>
                                             <option value="Penagihan">Penagihan</option>
@@ -87,11 +88,12 @@
                                             <option value="Wonosari">Wonosari</option>
                                             <option value="Sukosari 2">Sukosari 2</option>
                                         </select>
+                                        <?= form_error('sub_bagian', '<small class="text-danger">', '</small>'); ?>
                                     </div>
                                 </div>
                                 <div class=" form-row">
                                     <div class="form-group col-sm-6 mb-3 mb-sm-0">
-                                        <select class="custom-select" name="jabatan" id="jabatan" required>
+                                        <select class="custom-select" name="jabatan" id="jabatan">
                                             <option value="">Jabatan</option>
                                             <option value="Kabag">Kabag</option>
                                             <option value="Ketua">Ketua</option>
@@ -102,9 +104,10 @@
                                             <option value="Anggota">Anggota</option>
                                             <option value="Staf">Staf</option>
                                         </select>
+                                        <?= form_error('jabatan', '<small class="text-danger">', '</small>'); ?>
                                     </div>
                                     <div class="form-group col-sm-6">
-                                        <select class="custom-select" name="agama" id="agama" required>
+                                        <select class="custom-select" name="agama" id="agama">
                                             <option value="">Agama</option>
                                             <option value="Islam">Islam</option>
                                             <option value="Kristen">Kristen</option>
@@ -113,6 +116,7 @@
                                             <option value="Buddha">Buddha</option>
                                             <option value="Kepercayaan">Kepercayaan</option>
                                         </select>
+                                        <?= form_error('agama', '<small class="text-danger">', '</small>'); ?>
                                     </div>
                                 </div>
                                 <div class=" form-row">
@@ -127,7 +131,7 @@
                                 </div>
                                 <div class=" form-row">
                                     <div class="form-group col-sm-6 mb-3 mb-sm-0">
-                                        <select class="custom-select" name="jenkel" id="jenkel" required>
+                                        <select class="custom-select" name="jenkel" id="jenkel">
                                             <option value="">Jenis Kelamin</option>
                                             <option value="Laki-laki">Laki-laki</option>
                                             <option value="Perempuan">Perempuan</option>
@@ -135,7 +139,7 @@
                                         <?= form_error('jenkel', '<small class="text-danger">', '</small>'); ?>
                                     </div>
                                     <div class="form-group col-sm-6">
-                                        <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" placeholder="Tempat Lahir" required value="<?= set_value('tempat_lahir'); ?>">
+                                        <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" placeholder="Tempat Lahir" value="<?= set_value('tempat_lahir'); ?>">
                                         <?= form_error('tempat_lahir', '<small class="text-danger">', '</small>'); ?>
                                     </div>
                                 </div>
@@ -144,7 +148,7 @@
                                         <input class="form-control" placeholder="Tanggal Lahir :" readonly>
                                     </div>
                                     <div class="form-group col-sm-6">
-                                        <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir" required>
+                                        <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir">
                                         <?= form_error('tgl_lahir', '<small class="text-danger">', '</small>'); ?>
                                     </div>
                                 </div>
