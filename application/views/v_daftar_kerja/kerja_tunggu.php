@@ -238,7 +238,10 @@
                                                     <tr class="text-dark">
                                                         <td class="text-center"><?php echo $no++; ?></td>
                                                         <td><?php echo $row->name_task ?></td>
-                                                        <td class="text-center"><a href="<?= base_url('c_daftar_kerja/proses/'); ?><?= $row->id_task ?>"> <span class="proses badge badge-primary">Proses</span></a> <a href="<?= base_url('c_daftar_kerja/hapus/'); ?><?= $row->id_task ?>"><span class="badge badge-danger" onclick="return confirm('Yakin Mau Menghapus?');">Hapus</span></a></td>
+                                                        <td class="text-center">
+                                                            <a href="<?= base_url('c_daftar_kerja/proses/'); ?><?= $row->id_task ?>"> <span class="proses badge badge-primary">Proses</span></a>
+                                                            <a href="<?= base_url('c_daftar_kerja/hapus/' . $row->id_task); ?>" class="badge badge-danger">Hapus</a>
+                                                        </td>
                                                     </tr>
                                                 <?php endforeach; ?>
                                             </tbody>
@@ -282,7 +285,7 @@
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header bg-danger text-light">
                     <h5 class="modal-title" id="exampleModalLabel">Yakin Mau Keluar?</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
@@ -314,6 +317,9 @@
     <!-- Page level custom scripts -->
     <script src="<?= base_url() ?>/assets/js/demo/datatables-demo.js"></script>
 
+    <!-- Sweetalert2 -->
+    <script src="<?php echo base_url(); ?>assets/sweetalert2.all.min.js"></script>
+
     <script>
         const proses = document.querySelectorAll('.proses');
         for (let i = 0; i < proses.length; i++) {
@@ -324,6 +330,26 @@
                 proses[i].innerHTML = "Proses";
             });
         }
+    </script>
+
+    <script>
+        $('.badge-danger').on('click', function(e) {
+            e.preventDefault();
+            const href = $(this).attr('href');
+            Swal.fire({
+                title: 'Yakin mau Di Hapus?',
+                text: 'Jika yakin tekan Hapus',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Hapus'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.location.href = href;
+                }
+            })
+        })
     </script>
 </body>
 

@@ -56,7 +56,7 @@
                                     </div>
                                     <div class="form-group col-sm-6">
                                         <select class="custom-select" name="sub_bagian" id="sub_bagian">
-                                            <option value>Sub Bagian / UPK</option>
+                                            <option value="">Sub Bagian / UPK</option>
                                             <option value="Langganan">Langganan</option>
                                             <option value="Penagihan">Penagihan</option>
                                             <option value="Umum">Umum</option>
@@ -93,7 +93,7 @@
                                 </div>
                                 <div class=" form-row">
                                     <div class="form-group col-sm-6 mb-3 mb-sm-0">
-                                        <select class="custom-select" name="jabatan" id="jabatan">
+                                        <select class="custom-select" name="jabatan" id="jabatan" clas>
                                             <option value="">Jabatan</option>
                                             <option value="Kabag">Kabag</option>
                                             <option value="Ketua">Ketua</option>

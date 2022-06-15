@@ -16,10 +16,10 @@ class Auth extends CI_Controller
         }
 
         $this->form_validation->set_rules('username', 'Nama Panggilan', 'required', [
-            'required' => 'Harus di isi, Tidak boleh kosong'
+            'required' => '%s Harus di isi'
         ]);
         $this->form_validation->set_rules('password', 'Password', 'trim|required', [
-            'required' => 'Harus di isi, Tidak boleh kosong'
+            'required' => '%s Harus di isi'
         ]);
         // $this->form_validation->set_rules('bagian', 'Bagian', 'required');
         // $this->form_validation->set_rules('sub_bagian', 'Sub Bagian', 'required');
@@ -76,13 +76,13 @@ class Auth extends CI_Controller
                 redirect('c_daftar_kerja');
             } else {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-                Password Salah
+                Login Gagal, Password Anda Salah
               </div>');
                 redirect('auth');
             }
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-            Nama Panggilan tidak terdaftar
+            Login Gagal, Nama Panggilan tidak terdaftar
           </div>');
             redirect('auth');
         }
@@ -153,9 +153,9 @@ class Auth extends CI_Controller
 
     public function logout()
     {
-        if ($this->session->userdata('username')) {
-            redirect('c_daftar_kerja');
-        }
+        // if ($this->session->userdata('username')) {
+        //     redirect('c_daftar_kerja');
+        // }
 
         $this->session->unset_userdata('nama_depan');
         $this->session->unset_userdata('nama_belakang');

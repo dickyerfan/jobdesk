@@ -18,7 +18,7 @@
                                     </div>
                                     <div class="col-sm-7">
 
-                                        <h1 class="text-gray-900 mb-4">LOGIN</h1>
+                                        <h1 class="text-primary font-weight-bold mb-4">LOGIN</h1>
                                     </div>
 
                                 </div>
@@ -27,11 +27,11 @@
                                 <form method="post" action="<?= base_url('auth'); ?>" class="user">
                                     <div class="form-group">
                                         <input type="text" class="form-control form-control-user" id="username" name="username" placeholder="Nama Panggilan" value="<?= set_value('username') ?>">
-                                        <?= form_error('username', '<small class="text-danger">', '</small>'); ?>
+                                        <?= form_error('username', '<small class="text-danger pl-3">', '</small>'); ?>
                                     </div>
                                     <div class="form-group">
                                         <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="Password">
-                                        <?= form_error('password', '<small class="text-danger">', '</small>'); ?>
+                                        <?= form_error('password', '<small class="text-danger pl-3">', '</small>'); ?>
                                     </div>
                                     <!-- <div class="form-group">
                                         <select class="custom-select" name="bagian" id="bagian" required>
