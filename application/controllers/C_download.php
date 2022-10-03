@@ -32,6 +32,20 @@ class C_download extends CI_Controller
                     $this->db->query("INSERT INTO $table (name_task, status_task1, tahun, bulan , date_task1)SELECT name_task,'Pending',YEAR(now()),month(now()),now() FROM listjob WHERE username = '$table'");
                     redirect('c_daftar_kerja');
                 }
+            } else {
+                $table = $this->session->userdata('username');
+                $query = $this->db->query("SELECT * FROM $table WHERE bulan = '$bulan' ");
+
+                if ($query->num_rows() > 0) {
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+                    Download Data Gagal! <br> Daftar pekerjaan sudah ada
+                  </div>');
+                    redirect('c_daftar_kerja');
+                    // redirect('coba');
+                } else {
+                    $this->db->query("INSERT INTO $table (name_task, status_task1, tahun, bulan , date_task1)SELECT name_task,'Pending',YEAR(now()),month(now()),now() FROM listjob WHERE username = '$table'");
+                    redirect('c_daftar_kerja');
+                }
             }
         }
     }
