@@ -16,11 +16,12 @@ class C_download extends CI_Controller
             $bulan = $this->input->post('bulan');
             date_default_timezone_set("Asia/Jakarta");
             $bulan = date('m');
+            $tahun = date('Y');
             if ($bulan < 10) {
                 $bulan = str_split($bulan)[1];
 
                 $table = $this->session->userdata('username');
-                $query = $this->db->query("SELECT * FROM $table WHERE bulan = '$bulan' ");
+                $query = $this->db->query("SELECT * FROM $table WHERE bulan = $bulan AND tahun = $tahun");
 
                 if ($query->num_rows() > 0) {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
@@ -34,7 +35,7 @@ class C_download extends CI_Controller
                 }
             } else {
                 $table = $this->session->userdata('username');
-                $query = $this->db->query("SELECT * FROM $table WHERE bulan = '$bulan' ");
+                $query = $this->db->query("SELECT * FROM $table WHERE bulan = $bulan AND tahun = $tahun");
 
                 if ($query->num_rows() > 0) {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
